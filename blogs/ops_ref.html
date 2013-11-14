@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]--><!--[if IE 7 ]>    <html class="ie7"> <![endif]--><!--[if IE 8 ]>    <html class="ie8"> <![endif]--><!--[if IE 9 ]>    <html class="ie9"> <![endif]--><!--[if !IE]><!--> <html>         <!--<![endif]--><head><meta name="en:locale" content="zh_CN" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <meta property="og:title" content="线上OPS维护"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:description" content="#######自动修复Job########## 1. 选取最新的Job select * from job order by create_time desc limit 10; 2. 如果Job状态为2，无需修复过滤历史，直接即可接着运行 select id,is_test,version,extend_field,target_count,status,execute_start_time,..."/>
+    <meta property="og:url" content="https://www.evernote.com/shard/s44/sh/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416"/>
+    <meta property="og:image"
+          content="https://www.evernote.com/shard/s44/sh/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416/thm/note/9bd40590-4374-444d-aaa7-ec7570071ed8"/>
+    <meta property="og:site_name" content="Evernote"/>
+    <meta property="og:created_time" content="1378175502000"/>
+    <meta property="og:updated_time" content="1384426875000"/>
+    <link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="/redesign/global/css/header.css" />
+
+    <link rel="stylesheet" href="/redesign/global/css/sharedNote.css" />
+    <title>线上OPS维护</title>
+    <link rel="stylesheet" href="/ro/L3JlZGVzaWduL21vZHVsZXMvU2hhcmluZ01lbnUtZWM0MGE3ZDM5MjVhOWYyMjllNTEzM2Q2MzJm
+OGEwZjNiYzE3MTEzNy5jc3M
+/L3JlZGVzaWduL21vZHVsZXMvRW5jcnlwdGVkVGV4dERpYWxvZy1kZDAzYzU5MTE4MzUwNjE0ZWNi
+YmQzZTkzODFlNzY5MTk1ODZiY2UxLmNzcw
+/L3JlZGVzaWduL21vZHVsZXMvTGlua1VybERpYWxvZy00ZmYwZjIyYzgzN2U1OGRiMDVjMTA5MTQ2
+Y2RmMmJkZGNhZTkxNmE1LmNzcw
+/-1858694619.css"></head><body class="wrapper"><div class="logo-bar public-layout">
+    <a href="http://evernote.com/" target="_blank" class="evernote-logo "></a>
+    <a class="save-button normal-save-button save-button-desktop" href="#">
+        保存到 Evernote</a>
+    <div class="switch-account-div">
+        <div class="switch-account-icon"></div>
+        <div class="switch-account-name"></div>
+        <div class="switch-account-arrow"></div>
+        <div class="switch-account-dropdown">
+            <div class="switch-dropdown-arrow"></div>
+            <div class="switch-account-menuitem">
+                切换帐户</div>
+            <div class="switch-account-logout">
+                退出登录</div>
+        </div>
+    </div>
+</div>
+
+<div id="message-container">
+    <div id="message">
+        <div id="message-checkmark"></div>
+        <span></span>
+    </div>
+</div>
+
+<div class="SharedNoteView"><div id="container-boundingbox" class="wrapper">
+<div id="container" class="wrapper">
+<div class="sharing-imagegallery">
+    <div class="SharingMenu"><div class="sharing-menu">
+        <div class="share-button-container">
+            <div class="label-container">
+                <span class="label"> 分享</span>
+                <div class="label-icon facebook-icon"></div>
+            </div>
+            <div class="icon-container"
+                 title="分享">
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-bar-div facebook">
+                <div class="menu-bar-icon facebook-icon"></div>
+                <span class="menu-bar-label"> Facebook</span>
+            </div>
+            <div class="menu-bar-div twitter">
+                <div class="menu-bar-icon twitter-icon"></div>
+                <span class="menu-bar-label"> Twitter</span>
+            </div>
+            <div class="menu-bar-div linkedin">
+                <div class="menu-bar-icon linkedin-icon"></div>
+                <span class="menu-bar-label"> LinkedIn</span>
+            </div>
+            <div class="menu-bar-div link">
+                <div class="menu-bar-icon link-icon"></div>
+                <span class="menu-bar-label"> 公开链接</span>
+            </div>
+        </div>
+    </div>
+    </div></div>
+<div class="shared-by shared-by-mobile">
+    由imqiang共享</div>
+<div class="shared-by shared-by-desktop">
+    <div class="shared-by-corner"></div>
+    由imqiang共享</div>
+<div style="clear: both"></div>
+<h2 class="note-title">线上OPS维护</h2>
+<div class="vtop">
+    <div class="note-updated">
+          <span>
+            更新今天</span>
+    </div>
+</div>
+<div class="divider"></div>
+<div class="note-content">
+<div style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" class="ennote">
+<div>#######自动修复Job##########</div>
+<div>1. 选取最新的Job</div>
+<div><span style="background-color: rgb(0, 0, 0); color: rgb(41, 249, 20); font-family: 'Andale Mono'; font-size: 12px;">select * from job order by create_time desc limit 10;</span><br/></div>
+<div><br/></div>
+<div>2. 如果Job状态为2，无需修复过滤历史，直接即可接着运行</div>
+<div>
+    <ul>
+        <li><span style="background-color: rgb(0, 0, 0); color: rgb(41, 249, 20); font-family: 'Andale Mono'; font-size: 12px;">select id,is_test,version,extend_field,target_count,status,execute_start_time,execute_end_time from engine_invite_msg where id in (select distinct msg_id from task where job_id=100000000537);</span><br/></li>
+        <li>确认上述查询结果是否仍在可执行期间，注意观察execute_start_time,execute_end_time，根据需要修改这个两个时间段</li>
+    </ul>
+    <div>3. 修复Job</div>
+</div>
+<div><span style="background-color: rgb(0, 0, 0); color: rgb(41, 249, 20); font-family: 'Andale Mono'; font-size: 12px;">   update engine_invite_msg set status=0  where id in (select distinct msg_id from task where job_id=100000000537);</span><br/></div>
+<div><span style="background-color: rgb(0, 0, 0); color: rgb(41, 249, 20); font-family: 'Andale Mono'; font-size: 12px;">   update job set status=7 where job_id=100000000537;</span><br/></div>
+<div><br/></div>
+<div>4. 等待Job执行完毕后，执行发送程序</div>
+<div>     登录 webmaster@10.10.65.63</div>
+<div>将任务：<span style="background-color: rgb(0, 0, 0); color: rgb(41, 249, 20); font-family: 'Andale Mono'; font-size: 12px;">#10 14 * * * sh /ROOT/project/business-center/business-center/classes/run_new.sh InviteNewBusiness 2&gt;&amp;1 1&gt;&gt;/ROOT/logs/dajie-business-running/InviteNewBusiness.log</span></div>
+<div>调整为合适的时间点！</div>
+<div><br/></div>
+<div>##################新集群<span style="-evernote-last-insertion-point:true;"></span> Hadoop 任务执行情况监察##################</div>
+<div><a href="http://10.10.64.88:50030/jobtracker.jsp">http://10.10.64.88:50030/jobtracker.jsp</a><br/></div>
+<div><br/></div>
+<div>#######大街代理########</div>
+<div>http://agent.dajie-inc.com</div>
+<div><br/></div>
+<div>########CM相关###########</div>
+<div>根据定向条件从CM中获取定向的UID用户：</div>
+<div>wget --post-data 'queryStr={&quot;school_id_1&quot;:[&quot;9188&quot;,&quot;1973&quot;,&quot;1930&quot;,&quot;7397&quot;],&quot;graduate_year&quot;:[&quot;2014&quot;]}' <a href="http://cm.nuggets.dajie.com/uidsearch">http://cm.nuggets.dajie.com/uidsearch</a></div>
+<div><br/></div>
+<div>#########kestrel##########</div>
+<div>机器：10.10.65.112</div>
+<div>登录方式：root</div>
+<div>安装目录：/ROOT/server/kestrel</div>
+<div>管理消息队列配置：/ROOT/server/kestrel/conf/production.scala</div>
+<div>消息队列的启动：/ROOT/server/kestrel/scripts/kestrel.sh</div>
+<div>登录：telnet ip 22133</div>
+<div>查看队列情况：DUMP_STATS     可参考kestrel命令介绍</div>
+<div>#########编译机##########</div>
+<div>地址：192.168.22.24</div>
+<div>用户名密码：root@51cms51cms</div>
+<div><br/></div>
+<div>########报表服务##########</div>
+<div>检查常规报表有没有正常服务：</div>
+<div>
+    <ul>
+        <li>检查Hive： <span style="font-size: 12px; font-family: 'Andale Mono'; color: rgb(41, 249, 20); background-color: rgb(0, 0, 0);"> select adslot_id,adslot_name,pv_count,click_count from nuggets.pi_daily_adunit where year=2013 and month=10 and day=21;</span></li>
+        <li><font face="Andale Mono" size="2">检查MySQl:</font></li>
+        <li style="list-style: none; display: inline">
+            <ul>
+                <li><font face="Andale Mono" size="2">登录：</font> <span style="font-size: 12px; font-family: 'Andale Mono'; color: rgb(41, 249, 20); background-color: rgb(0, 0, 0);">mysql -hdb_bss -P3324 -uadsol -padsol-13 BSS_ANALYSIS</span></li>
+                <li><span style="font-size: 12px; font-family: 'Andale Mono'; color: rgb(41, 249, 20); background-color: rgb(0, 0, 0);">select * from pi_daily_adunit where time='2013-10-22' limit 1 \G</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div><br/></div>
+<div>#########脚本服务器###########</div>
+IP:10.10.65.70
+<div>数据报表的hadoop客户端，目前来说生虎撰写报表etl生成的临时文件均放置在了/tmp目录，这个目录只有30g，容易产生报警，需要修复。</div>
+<div>登录方式  </div>
+<div>kinit   weiqiang.zhao</div>
+<div>ssh root@</div>
+<div>添加登录权限方法：</div>
+<div>     添加root权限登录：vi /root/.k5login </div>
+<div>     添加webmaster登录:  vim /home/webmaster/.k5login</div>
+<div><br/></div>
+<div>真正脚本位置：</div>
+<div>
+    <ul>
+        <li>生成用户Profile：/ROOT/scripts/dss/etl/scripts/nuggets_profile/profile_json/<a href="http://generateProfileFile.sh">generateProfileFile.sh</a></li>
+        <li>导入字典数据到Mysql中：/ROOT/scripts/dss/etl/scripts/dictionary/tomysql<br/></li>
+        <li>定时任务目录：/ROOT/scripts/dss/etl/crontab/</li>
+    </ul>
+    <div>脚本的git目录：<a href="http://git.ad.dajie.com/nuggets/dss/tree/master">http://git.ad.dajie.com/nuggets/dss/tree/master</a> </div>
+</div>
+<div><br/></div>
+<div><br/></div>
+<div>广告引擎：</div>
+<div>
+    <ul>
+        <li>维护公司白名单【增加，修改，重置】</li>
+        <li style="list-style: none; display: inline">
+            <ul>
+                <li>ssh webmaster@10.10.65.106</li>
+                <li>cd /ROOT/server/redis/src</li>
+                <li>./redis-cli -h redis_ads -p 6313 <br/></li>
+                <li>hget company_list 1001011</li>
+                <li>hdel company_list 1001011 <br/></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div><br/></div>
+<div><br/></div>
+<div><span style="font-size: 36px;">BSS</span></div>
+<div>
+    <div>#生成自动项目推荐：</div>
+    <div>
+        <ul>
+            <li>执行脚本 ssh webmaster@10.10.65.82 ; cd  /ROOT/www2/gen_auto_project_info; sh ./run.sh</li>
+            <li>在BSS中装在数据</li>
+        </ul>
+    </div>
+    <div>#清理字典数据缓存</div>
+    <div>/settings/clear</div>
+    <ul>
+        <li>base_type<br/></li>
+    </ul>
+</div>
+/** 项目**/
+<div>    public static final int ADUNIT_BASE_PROJECT = 1;</div>
+<div>    /**职位**/</div>
+<div>    public static final int ADUNIT_BASE_JOB = 2;</div>
+<div>    /**实习职位**/</div>
+<div>    public static final int ADUNIT_BASE_PRACTISE_JOB = 3;</div>
+<div>    /**宣讲会**/</div>
+<div>    public static final int ADUNIT_BASE_SEMINAR = 4;</div>
+<div>    /**其他**/</div>
+<div>    public static final int ADUNIT_BASE_ANY = 5;</div>
+<div>    /**人才库**/</div>
+<div>    public static final int ADUNIT_BASE_CANDIDATE = 6;</div>
+<div>    /**活动**/</div>
+<div>    public static final int ADUNIT_BASE_ACTIVITY = 7;<br/></div>
+<div><br/></div>
+<div>
+    <ul>
+        <li>广告单元邀请信修复URL：</li>
+        <li style="list-style: none; display: inline">
+            <ul>
+                <li><span style="color: rgb(31, 73, 125); font-family: Calibri, sans-serif; font-size: 14px; text-align: justify;">/invitation/instance/tmp/:推广单元ID/:邀请信ID</span><br/></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div><br/></div>
+<div>查看广告引擎错误日志：</div>
+<div>
+    <ol>
+        <li>ssh ads@10.10.64.11 <br/></li>
+        <li>cat ./nginx-logs/2013/09/13/10.10.67.200/a.nuggets.dajie.com.log | awk -F&quot; &quot; '{if($9==502)  print substr($4,14,2)}'  | sort | uniq -c | sort -k +2</li>
+    </ol>
+    <div>邀约消息状态：</div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">object</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">InviteMsg</span> {</div>
+    <div style="padding: 0px 10px;"><br/>
+        <br/></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_CREATED</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">0</span> <span style="color: rgb(136, 136, 136);">// 新建或从暂停状态恢复</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_PROCESSING</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">1</span> <span style="color: rgb(136, 136, 136);">// 处理中</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_PRODUCED_SEND_LIST</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">2</span> <span style="color: rgb(136, 136, 136);">// 生成发送列表</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_SENDING</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">3</span> <span style="color: rgb(136, 136, 136);">// 发送中</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_SENT</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">4</span> <span style="color: rgb(136, 136, 136);">// 消息引擎完成发送</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_PAUSE</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">5</span> <span style="color: rgb(136, 136, 136);">// 暂停</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_TERMINATED</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">6</span> <span style="color: rgb(136, 136, 136);">// 终止</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_ERROR_TARGET_OVERFLOW</span> <span style="font-weight: bold;">=</span> -<span style="color: rgb(0, 153, 153);">1</span> <span style="color: rgb(136, 136, 136);">// 定向超出限额</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">INVITE_MSG_STATUS_ERROR_TARGET_ZERO</span> <span style="font-weight: bold;">=</span> -<span style="color: rgb(0, 153, 153);">2</span> <span style="color: rgb(136, 136, 136);">// 定向人群为空</span></div>
+    <div style="padding: 0px 10px;"><br/>
+        <br/></div>
+    <div>}<br/></div>
+    <div><br/></div>
+    <div>JOB状态：</div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">object</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">Job</span> {</div>
+    <div style="padding: 0px 10px;"><br/>
+        <br/></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_CREATED</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">0</span> <span style="color: rgb(136, 136, 136);">// 完成job创建</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_CREATED_TASKS</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">1</span> <span style="color: rgb(136, 136, 136);">// 完成task创建</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH_TARGET</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">2</span> <span style="color: rgb(136, 136, 136);">// 完成目标定向处理</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH_FILTER</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">3</span> <span style="color: rgb(136, 136, 136);">// 完成已发送过滤</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH_BEFORE_MERGE</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">4</span> <span style="color: rgb(136, 136, 136);">// 完成待合并发送列表</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH_MERGE</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">5</span> <span style="color: rgb(136, 136, 136);">// 完成发送列表合并</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH_STORE</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">6</span> <span style="color: rgb(136, 136, 136);">// 完成发送列表存储</span></div>
+    <div style="padding: 0px 10px;"><span style="font-weight: bold;">val</span> <span style="color: rgb(68, 85, 136); font-weight: bold;">JOB_STATUS_FINISH</span> <span style="font-weight: bold;">=</span> <span style="color: rgb(0, 153, 153);">7</span> <span style="color: rgb(136, 136, 136);">// 完成job处理流程</span></div>
+    <div style="padding: 0px 10px;"><br/>
+        <br/></div>
+    <div style="padding: 0px 10px;">}</div>
+    <div><br/></div>
+    <div><br/></div>
+    <div>外发邮件用户名密码：</div>
+    <div>
+        <ul>
+            <li><span style="font-family: Helvetica;">邮件地址：</span><a href="mailto:dj-bss-report@dajie-inc.com" style="font-family: Helvetica;">dj-bss-report@dajie-inc.com</a><br/></li>
+            <li><span style="font-family: Helvetica;">密码：7ujm8ik@dj </span><br/></li>
+            <li><font face="Helvetica">待修复的邮件发送：65.82,65.70  目录：</font>/ROOT/scripts/sendMail.py </li>
+        </ul>
+        <div><font face="Helvetica">消息引擎维护---job异常终止</font></div>
+    </div>
+</div>
+<div>
+    <ul>
+        <li><font face="Helvetica">将该job相关的msg标记为0，update engine_invite_msg set status=0 where id in(….)</font></li>
+        <li><font face="Helvetica">恢复旧有的历史过滤记录：</font></li>
+        <li style="list-style: none; display: inline">
+            <ul>
+                <li>备份现有：hadoop fs -mv /user/webmaster/history/history.tsv /user/webmaster/history/history.tsv_bak_1009</li>
+                <li>恢复历史：hadoop fs -mv /user/webmaster/history/history.tsv_bak_100000000353(jobid) /user/webmaster/history/history.tsv</li>
+            </ul>
+        </li>
+        <li>将现有的Job标记为已解决。<br/></li>
+    </ul>
+    <div>消息引擎hadoop过滤目录：/user/webmaster/history/</div>
+    <div>消息引擎運行诊断：</div>
+    <div>
+        <ul>
+            <li>统计某taskId的inviteCnt:</li>
+            <li style="list-style: none; display: inline">
+                <ul>
+                    <li>cat 20131010_100000000359_before_filter.tsv | awk -F&quot;\t&quot; '{if($1==100000001817) print $0}' | wc -l</li>
+                </ul>
+            </li>
+        </ul>
+        <div>常见问题：</div>
+    </div>
+    <div>
+        <ul>
+            <li>某task对应的inviteCnt为0</li>
+            <li style="list-style: none; display: inline">
+                <ul>
+                    <li>该实体可能被发送过</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div>bss-data-sync的执行目录：</div>
+    <div>
+        <ul>
+            <li>/ROOT/app/bss_data_sync/bin<br/></li>
+            <li>部署机器：10.10.65.108</li>
+            <li>该脚本接受参数，可以停止、启动、重启进程等操作。</li>
+        </ul>
+    </div>
+</div>
+<div><br/></div>
+<div>hadoop管理</div>
+<div>
+    <ul>
+        <li>任务监控地址：<a href="http://64-88.bjyz.dajie-inc.com:50030/jobtracker.jsp">http://64-88.bjyz.dajie-inc.com:50030/jobtracker.jsp</a></li>
+        <li>hadoop管理地址：<a href="http://10.10.64.67:7180/cmf/services/status">http://10.10.64.67:7180/cmf/services/status</a>   admin@admin</li>
+    </ul>
+    <div>查看消息队列状态：</div>
+</div>
+马刚:  19:12:30
+<div>@伟强，这个命令好使 DUMP_STATS ，看到的非常清晰</div>
+<div>马刚:  19:12:43</div>
+<div>queue 'queue_creates' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=0</div>
+<div>  logsize=0</div>
+<div>  expired_items=0</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=0</div>
+<div>  open_transactions=0</div>
+<div>  transactions=0</div>
+<div>  canceled_transactions=0</div>
+<div>  total_flushes=0</div>
+<div>}</div>
+<div>queue 'index+two' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=49553</div>
+<div>  logsize=8191886</div>
+<div>  expired_items=5</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=0</div>
+<div>  open_transactions=0</div>
+<div>  transactions=369</div>
+<div>  canceled_transactions=0</div>
+<div>  total_flushes=0</div>
+<div>}</div>
+<div>queue 'base' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=13193</div>
+<div>  logsize=8359414</div>
+<div>  expired_items=0</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=0</div>
+<div>  open_transactions=0</div>
+<div>  transactions=1721</div>
+<div>  canceled_transactions=0</div>
+<div>  total_flushes=0</div>
+<div>}</div>
+<div>queue 'index+one' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=49611</div>
+<div>  logsize=8206251</div>
+<div>  expired_items=5</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=0</div>
+<div>  open_transactions=0</div>
+<div>  transactions=369</div>
+<div>  canceled_transactions=0</div>
+<div>  total_flushes=0</div>
+<div>}</div>
+<div>queue 'adUnitSettle' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=47</div>
+<div>  logsize=7248</div>
+<div>  expired_items=0</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=1</div>
+<div>  open_transactions=2</div>
+<div>  transactions=88</div>
+<div>  canceled_transactions=86</div>
+<div>  total_flushes=0</div>
+<div>}</div>
+<div>queue 'index' {</div>
+<div>  items=0</div>
+<div>  bytes=0</div>
+<div>  total_items=49611</div>
+<div>  logsize=7759797</div>
+<div>  expired_items=374</div>
+<div>  mem_items=0</div>
+<div>  mem_bytes=0</div>
+<div>  age=0</div>
+<div>  discarded=0</div>
+<div>  waiters=0</div>
+<div>  open_transactions=0</div>
+<div>  transactions=0</div>
+<div>  canceled_transactions=0</div>
+<div>  total_flushes=0</div>
+<div>  children=index+one,index+two</div>
+<div>}</div>
+<div>END<br/></div>
+</div></div>
+<a class="save-button save-button-mobile" href="#">
+    保存到 Evernote</a>
+</div>
+</div>
+<div class="clearfix" style="clear: both;"></div>
+<div class="footer">
+    <div>
+        用电脑、平板、手机和网页，Evernote 可以让你轻松记住生活中的点点滴滴。</div>
+    <div class="footer-logo"></div>
+</div>
+</div><div class="EncryptedTextDialog"><script id="encryptedTextDialog" type="text/html">
+    <div class="encrypted-text-dialog">
+        <div class="ext-padding">
+            <div class="dialog-head">
+                显示加密的文本</div>
+            <div class="dialog-body">
+                <p>输入密码查看内容</p>
+                <input type="password" id="passphrase"/>
+                <div class="error-status" id="encrypted-error">
+                    密码不正确</div>
+                <div style="clear: both;"></div>
+                <p>
+                    提示：{{hint}}</p>
+                <p>你的口令将不会上传到服务器。</p>
+            </div>
+            <div class="dialog-button-container">
+                <input type="button" class="general-button emphasize"
+                       id="encrypted-decrypt" value="确定"/>
+                <input type="button" class="general-button deemphasize"
+                       id="encrypted-close" value="取消"/>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="decrypted-header" class="hidden">
+        加密文本</div>
+</script>
+</div><div class="LinkUrlDialog"><script id="linkUrlDialog" type="text/html">
+    <div class="link-url-dialog">
+        <div class="dialog-head">
+            公开链接</div>
+        <div class="dialog-body">
+            <p>粘贴此链接到电子邮件、微博、微信或各种聊天对话框中，把笔记分享给朋友们吧。</p>
+            <p>任何人都可以使用此链接查看笔记。</p>
+        </div>
+        <div class="url-container">
+            <div class="url-title">
+                笔记公开链接：</div>
+            <input type="text" class="url-input" value="{{url}}" readonly>
+            <div class="copy-container">
+                <button type="button" class="copy-button">
+                    复制到剪贴板</button>
+            </div>
+        </div>
+    </div>
+</script>
+</div><script src="/redesign/global/js/respond.min.js"></script>
+<script src="/redesign/global/js/require.min.js"></script>
+<script src="/redesign/global/js/config-require.js"></script>
+<script type="text/javascript">
+    define("actionBean", [], function() {return {"saveNoteUri":"/saveNote/s44/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416","shareNoteUri":"/shard/s44/sh/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416?shareNote&service=","foodNote":false,"skitchImageNote":false,"skitchPdfNote":false,"userName":"","mobileUserAgent":false,"userLoggedIn":false,"switchAccountUri":"/saveNote/s44/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416?switch","logoutUri":"/saveNote/s44/9bd40590-4374-444d-aaa7-ec7570071ed8/d5ad6ec8ce74c773e2d0e9e138100416?logout","userStatus":"","skitchNote":false,"images":false,"skitchJsonLocation":"","skitchAnnotatedPdfLocation":"","pdfUrls":[]};});
+</script>
+<!-- Google Analytics -->
+<script type="text/javascript">
+    window._gaq = window._gaq || [];
+    window._gaq.push(['_setAccount', 'UA-285778-5']);
+
+
+    window._gaq.push(['_trackPageview', '/sh/{noteGuid}/{noteKey}/{suffix}']);
+
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<!-- End of Google Analytics -->
+<script type="text/javascript">
+    window._gaq = window._gaq || [];
+    window._gaq.push(['_setCustomVar',
+        4,                                 // Slot 4 - required
+        'contentClass',                    // Category - required
+        '', // Value - required
+        3                                  // Page-level scope
+    ]);
+
+    window._gaq.push(['_setCustomVar',
+        5,                                      // Slot 5 - required
+        'sourceApplication',                    // Category - required
+        '', // Value - required
+        3                                       // Page-level scope
+    ]);
+    window._gaq.push(['_trackPageview', '/singleNote']);
+</script>
+<script type="text/javascript" src="/ro/L3JlZGVzaWduL21vZHVsZXMvU2hhcmluZ01lbnUtODVmMWYyMjY1MWFiMmY4NjQ4MGYyY2JiY2My
+MmQwNGU2MDgzZDEwYS5qcw
+/L3JlZGVzaWduL21vZHVsZXMvRW5jcnlwdGVkVGV4dERpYWxvZy0zNmYyYzBmNGI2NjRmZjllNGY2
+Yzk5OGZlYTNmZjRkYzQ2NjA5M2EuanM
+/L3JlZGVzaWduL21vZHVsZXMvTGlua1VybERpYWxvZy1mOWU2YjNmYjZkN2MwNWMwOGE2NGRjMWYz
+MWYxZjg4ZTk0MDZmM2EzLmpz
+/L3JlZGVzaWduL2dsb2JhbC9qcy9oZWFkZXItZmY4MDkyOTk2NDY3NzU3ZGJjN2NjYWY4MjJmODQ0
+YWVhYTdhMWQzOS5qcw
+/L3JlZGVzaWduL3NoYXJpbmcvU2hhcmVkTm90ZVZpZXdBY3Rpb24tODg0OTVlMjgxNDdmZjJiY2Vm
+MTU4MmJjNmIwMTIwYzVlMDUyYTgxNy5qcw
+/363776697.js"></script><!--[if !IE]><!--><script>if (/*@cc_on!@*/false) document.documentElement.className += ' ie10';</script><!--<![endif]--></body></html>
